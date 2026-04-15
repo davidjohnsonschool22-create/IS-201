@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Identity Habit Generator</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, 'Times New Roman', serif;
+            color: #1f2937;
+            background: linear-gradient(to bottom, #edf4f8, #dce8ef);
+            line-height: 1.7;
+        }
+
+        .hero {
+            background-image: linear-gradient(rgba(67, 170, 161, 0.6), rgba(214, 223, 93, 0.6)), url("images/brain-bg.jpg");
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 30px 20px 80px 20px;
+            text-align: center;
+        }
+
+        .top-nav {
+            margin-bottom: 40px;
+        }
+
+        .top-nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 14px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+        }
+
+        .top-nav a:hover {
+            text-decoration: underline;
+        }
+
+        .hero h1 {
+            font-size: 3.2rem;
+            margin-bottom: 10px;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .content {
+            width: 85%;
+            max-width: 900px;
+            margin: 40px auto;
+        }
+
+        .app-box,
+        .info-box {
+            background-color: white;
+            border-radius: 12px;
+            padding: 28px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #0f172a;
+        }
+
+        label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 8px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+            color: #0f172a;
+        }
+
+        select {
+            width: 100%;
+            padding: 12px;
+            font-size: 1rem;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            background-color: #f8fafc;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button {
+            margin-top: 20px;
+            background-color: #1d4ed8;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            font-size: 1rem;
+            cursor: pointer;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        button:hover {
+            background-color: #163ea8;
+        }
+
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #eff6ff;
+            border-left: 5px solid #1d4ed8;
+            border-radius: 8px;
+        }
+
+        .result p {
+            margin: 10px 0;
+        }
+
+        .result-title {
+            font-weight: bold;
+            color: #1d4ed8;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: #0f172a;
+            color: white;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: #93c5fd;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <nav class="top-nav">
+            <a href="index.html">Résumé</a>
+            <a href="scratch.html">The Science of Change</a>
+        </nav>
+
+        <h1>Identity Practice Generator</h1>
+        <p class="subtitle">
+         Small repeated behaviors shape identity. Choose the kind of person you want to become, then generate one action or habit that aligns with that direction.
+        </p>
+    </header>
+
+    <main class="content">
+        <section class="info-box">
+            <h2>How This Works</h2>
+
+<p>
+Lasting change happens through repeated behavior. This app is built on the idea that the actions we take—whether small habits or one-time decisions—gradually shape our identity.
+</p>
+
+<p>
+Instead of focusing only on goals, this approach emphasizes practicing the behaviors that reflect the kind of person you want to become. Over time, these patterns influence how you think, act, and see yourself.
+</p>
+
+<p>
+Choose an identity and a difficulty level, and the app will generate a behavior along with a reinforcement message tied to who you are becoming.
+</p>
+        </section>
+
+        <section class="app-box">
+            <h2>Generate a Behavior</h2>
+
+            <label for="identity">Choose an identity:</label>
+            <select id="identity">
+                <option value="">Select Identity</option>
+                <option value="disciplined">Disciplined</option>
+                <option value="focused">Focused</option>
+                <option value="healthy">Healthy</option>
+                <option value="confident">Confident</option>
+                <option value="kind">Kind</option>
+                <option value="consistent">Consistent</option>
+                <option value="productive">Productive</option>
+                <option value="resilient">Resilient</option>
+                <option value="organized">Organized</option>
+                <option value="patient">Patient</option>
+                <option value="mentally resilient">Mentally Resilient</option>
+                <option value="proactive">Proactive</option>
+                <option value="self-controlled">Self-Controlled</option>
+                <option value="self-motivated">Self-Motivated</option>
+                <option value="growth-oriented">Growth-Oriented</option>
+            </select>
+
+            <label for="difficulty">Choose a difficulty:</label>
+            <select id="difficulty">
+                <option value="">Select Difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+
+            <button onclick="generateHabit()">Generate Behavior</button>
+
+            <div class="result" id="output">
+                <p>Select an identity and difficulty to get started.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>© 2026 David Johnson</p>
+        <p>
+            <a href="index.html">Résumé</a> |
+            <a href="Scratch.html">The Science of Change</a>
+        </p>
+    </footer>
+
+    <script>
+        const habits = {
+            disciplined: {
+                easy: [
+                    "Make your bed as soon as you wake up.",
+                    "Write down your top task for the day.",
+                    "Spend 5 minutes cleaning your space."
+                ],
+                medium: [
+                    "Finish one important task before checking social media.",
+                    "Follow a written plan for the next hour.",
+                    "Set a timer and work without distractions for 20 minutes."
+                ],
+                hard: [
+                    "Complete your hardest task before noon.",
+                    "Stick to a full planned routine tonight without skipping steps.",
+                    "Avoid procrastination by beginning the task you’ve been resisting."
+                ]
+            },
+            focused: {
+                easy: [
+                    "Study or work for 10 uninterrupted minutes.",
+                    "Put your phone out of reach during one task.",
+                    "Choose one task and finish it before switching."
+                ],
+                medium: [
+                    "Do 25 minutes of deep work with no notifications.",
+                    "Work in silence for one full study block.",
+                    "Write down distractions instead of acting on them."
+                ],
+                hard: [
+                    "Complete 45 minutes of deep work without checking your phone.",
+                    "Spend one full hour doing only one important task.",
+                    "Eliminate all digital distractions during your next work session."
+                ]
+            },
+            healthy: {
+                easy: [
+                    "Drink a full glass of water right now.",
+                    "Take a 10-minute walk today.",
+                    "Choose one healthier snack today."
+                ],
+                medium: [
+                    "Prepare one balanced meal today.",
+                    "Exercise for 20 minutes.",
+                    "Go to bed early enough to support recovery."
+                ],
+                hard: [
+                    "Complete a full workout even if you do not feel like it.",
+                    "Avoid junk food for the rest of the day.",
+                    "Follow a complete healthy routine for the next 24 hours."
+                ]
+            },
+            confident: {
+                easy: [
+                    "Stand tall and speak clearly in one conversation.",
+                    "Say one honest opinion out loud today.",
+                    "Make eye contact when speaking with someone."
+                ],
+                medium: [
+                    "Start a conversation you would usually avoid.",
+                    "Do one task today without overthinking it first.",
+                    "Speak up once in class, work, or discussion."
+                ],
+                hard: [
+                    "Do something important today without waiting to feel fully ready.",
+                    "Initiate a difficult but necessary conversation.",
+                    "Take action on something you have been avoiding out of fear."
+                ]
+            },
+            kind: {
+                easy: [
+                    "Give one sincere compliment today.",
+                    "Send a kind message to someone.",
+                    "Pause and listen fully when someone speaks."
+                ],
+                medium: [
+                    "Do one helpful act without being asked.",
+                    "Respond with patience in a frustrating moment.",
+                    "Encourage someone who may need it."
+                ],
+                hard: [
+                    "Show kindness in a situation where it would be easier to be impatient.",
+                    "Forgive a small offense without dwelling on it.",
+                    "Offer meaningful help that costs you time or effort."
+                ]
+            },
+            consistent: {
+                easy: [
+                    "Repeat one small positive habit today.",
+                    "Show up for a habit even if only for 5 minutes.",
+                    "Do the same good action at the same time today."
+                ],
+                medium: [
+                    "Complete your habit at the planned time with no excuses.",
+                    "Follow through on a routine you started earlier this week.",
+                    "Track one habit and complete it today."
+                ],
+                hard: [
+                    "Complete your habit even when your energy is low.",
+                    "Stick to your planned routine for the full day.",
+                    "Prove consistency by doing the work without waiting for motivation."
+                ]
+            },
+            productive: {
+                easy: [
+                    "Write a short to-do list with your top priority first.",
+                    "Finish one small task completely.",
+                    "Spend 10 minutes organizing your work."
+                ],
+                medium: [
+                    "Complete two meaningful tasks before taking a long break.",
+                    "Use a 25-minute work sprint on something important.",
+                    "Start with the task that gives the biggest payoff."
+                ],
+                hard: [
+                    "Plan your day and follow it closely.",
+                    "Finish your most important task before doing anything low-value.",
+                    "Work through a full focused session on a major responsibility."
+                ]
+            },
+            resilient: {
+                easy: [
+                    "Keep going on one task for 5 extra minutes after you want to stop.",
+                    "Respond calmly to one inconvenience today.",
+                    "Try again once after a small setback."
+                ],
+                medium: [
+                    "Re-engage with a task after making a mistake.",
+                    "Finish something difficult without complaining.",
+                    "Turn one frustration into a useful next step."
+                ],
+                hard: [
+                    "Face a difficult task directly instead of avoiding it.",
+                    "Recover quickly from a setback and continue working.",
+                    "Practice staying steady in a situation that tests you."
+                ]
+            },
+            organized: {
+                easy: [
+                    "Clean one small area of your room or desk.",
+                    "Put tomorrow’s materials in one place tonight.",
+                    "Write down your schedule for the day."
+                ],
+                medium: [
+                    "Organize your workspace before beginning work.",
+                    "Plan tomorrow before going to bed tonight.",
+                    "Sort and prioritize your top responsibilities."
+                ],
+                hard: [
+                    "Create and follow a structured schedule for the day.",
+                    "Declutter a meaningful space and keep it clean.",
+                    "Build order into your day by planning tasks by time."
+                ]
+            },
+            patient: {
+                easy: [
+                    "Pause for five seconds before reacting today.",
+                    "Let one small annoyance go.",
+                    "Slow down and listen without interrupting."
+                ],
+                medium: [
+                    "Stay calm during one frustrating moment today.",
+                    "Wait without reaching for your phone immediately.",
+                    "Respond thoughtfully instead of reacting quickly."
+                ],
+                hard: [
+                    "Practice calm restraint in a stressful situation.",
+                    "Choose peace in a moment that tests your patience.",
+                    "Endure discomfort without rushing to escape it."
+                ]
+            },
+            "mentally resilient": {
+                easy: [
+                    "Replace one negative thought with a realistic one.",
+                    "Take one deep breath before reacting to stress.",
+                    "Write down one thing you handled well today."
+                ],
+                medium: [
+                    "Keep working after a mental dip in motivation.",
+                    "Challenge one discouraging thought with evidence.",
+                    "Stay composed during one stressful moment."
+                ],
+                hard: [
+                    "Push through a mentally difficult task without quitting early.",
+                    "Face discomfort instead of escaping it immediately.",
+                    "Practice steady thinking under pressure today."
+                ]
+            },
+            proactive: {
+                easy: [
+                    "Start one task before being reminded.",
+                    "Take one small action on something you’ve delayed.",
+                    "Prepare for tomorrow before the day ends."
+                ],
+                medium: [
+                    "Solve a small problem before it becomes a bigger one.",
+                    "Begin an important task earlier than usual.",
+                    "Take initiative on something that matters today."
+                ],
+                hard: [
+                    "Address a problem directly instead of waiting.",
+                    "Take the lead on one needed responsibility today.",
+                    "Act early on a task you normally postpone."
+                ]
+            },
+            "self-controlled": {
+                easy: [
+                    "Delay one impulse for 10 minutes.",
+                    "Say no to one distraction today.",
+                    "Pause before making one unnecessary choice."
+                ],
+                medium: [
+                    "Avoid one habit that usually pulls you off track.",
+                    "Choose the better option in one tempting moment.",
+                    "Stick to your plan when distraction appears."
+                ],
+                hard: [
+                    "Resist a strong distraction and stay with your goal.",
+                    "Say no to an easy comfort in favor of long-term benefit.",
+                    "Practice control in a moment where impulse usually wins."
+                ]
+            },
+            "self-motivated": {
+                easy: [
+                    "Begin one task without waiting to feel motivated.",
+                    "Take one useful action immediately.",
+                    "Create momentum by starting small right away."
+                ],
+                medium: [
+                    "Work for 20 minutes without external pressure.",
+                    "Push yourself to begin before you feel ready.",
+                    "Take action on something important without being told."
+                ],
+                hard: [
+                    "Finish a demanding task entirely through self-discipline.",
+                    "Create your own momentum and sustain it for a full session.",
+                    "Do meaningful work today without depending on mood."
+                ]
+            },
+            "growth-oriented": {
+                easy: [
+                    "Reflect on one lesson from today.",
+                    "Try one new strategy on a task.",
+                    "Spend 10 minutes learning something useful."
+                ],
+                medium: [
+                    "Practice a skill that challenges you.",
+                    "Ask for feedback on something important.",
+                    "Work on improvement instead of just performance."
+                ],
+                hard: [
+                    "Deliberately practice a weakness today.",
+                    "Take on a task that stretches your current ability.",
+                    "Choose growth over comfort in one meaningful area."
+                ]
+            }
+        };
+
+        const messages = {
+            disciplined: "Every disciplined action reinforces who you are becoming.",
+            focused: "Attention is trained. Each focused choice strengthens your mind.",
+            healthy: "Each healthy action is evidence of respect for your body and future.",
+            confident: "Confidence grows when you act before you feel completely ready.",
+            kind: "Kindness becomes identity when it is practiced consistently.",
+            consistent: "Consistency is what turns small actions into lasting change.",
+            productive: "Productivity is built through meaningful action, not just intention.",
+            resilient: "Resilience grows every time you continue after discomfort.",
+            organized: "Order creates clarity, and clarity supports change.",
+            patient: "Patience is strength expressed calmly.",
+            "mentally resilient": "Mental resilience is built one steady response at a time.",
+            proactive: "A proactive life is built by acting before pressure forces you to.",
+            "self-controlled": "Self-control grows stronger each time impulse does not decide for you.",
+            "self-motivated": "Motivation often follows action. Starting is part of becoming.",
+            "growth-oriented": "Growth begins when you choose learning over comfort."
+        };
+
+        function generateHabit() {
+            const identity = document.getElementById("identity").value;
+            const difficulty = document.getElementById("difficulty").value;
+            const output = document.getElementById("output");
+
+            if (!identity || !difficulty) {
+                output.innerHTML = `
+                    <p><span class="result-title">Incomplete Selection:</span> Please choose both an identity and a difficulty level.</p>
+                `;
+                return;
+            }
+
+            const options = habits[identity][difficulty];
+            const randomHabit = options[Math.floor(Math.random() * options.length)];
+            const message = messages[identity];
+
+            output.innerHTML = `
+                <p><span class="result-title">Practice:</span> ${randomHabit}</p>
+                <p><span class="result-title">Identity Message:</span> ${message}</p>
+            `;
+        }
+    </script>
+</body>
+</html>
